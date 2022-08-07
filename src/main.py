@@ -1,5 +1,8 @@
 from decimal import Decimal
-from typing import NamedTuple, Sequence
+from typing import Callable, NamedTuple, Optional, Sequence
+
+# DeliveryChargeRule returns cost of delivery if applicable, else None
+DeliveryChargeRule = Callable[[Decimal], Optional[Decimal]]
 
 
 class Product(NamedTuple):
