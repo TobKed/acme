@@ -1,0 +1,29 @@
+[tool.isort]
+profile = "black"
+src_paths = ["src", "tests"]
+line_length = 80
+
+[tool.black]
+line-length = 80
+
+[tool.mypy]
+disallow_untyped_defs = true
+disallow_any_unimported = true
+no_implicit_optional = true
+check_untyped_defs = true
+warn_return_any = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_unused_configs = true
+show_error_codes = true
+error_summary = true
+
+[[tool.mypy.overrides]]
+module = 'tests.*'
+disallow_untyped_defs = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests",]
+
+[flake8]
+max-line-length = 80
