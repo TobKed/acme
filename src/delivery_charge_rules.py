@@ -6,26 +6,28 @@ from src.main import DeliveryChargeRule
 predefined_delivery_charge_rules: list[DeliveryChargeRule] = []
 
 
-def delivery_charge_rule(rule: DeliveryChargeRule) -> DeliveryChargeRule:
+def predefined_delivery_charge_rule(
+    rule: DeliveryChargeRule,
+) -> DeliveryChargeRule:
     predefined_delivery_charge_rules.append(rule)
     return rule
 
 
-@delivery_charge_rule
+@predefined_delivery_charge_rule
 def delivery_rule_under_50(basket_cost: Decimal) -> Optional[Decimal]:
     return (
         Decimal("4.95") if basket_cost and basket_cost < Decimal("50") else None
     )
 
 
-@delivery_charge_rule
+@predefined_delivery_charge_rule
 def delivery_rule_under_90(basket_cost: Decimal) -> Optional[Decimal]:
     return (
         Decimal("2.95") if basket_cost and basket_cost < Decimal("90") else None
     )
 
 
-@delivery_charge_rule
+@predefined_delivery_charge_rule
 def delivery_rule_90_or_more(basket_cost: Decimal) -> Optional[Decimal]:
     return (
         Decimal("0") if basket_cost and basket_cost >= Decimal("90") else None
