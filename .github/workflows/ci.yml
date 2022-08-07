@@ -28,3 +28,17 @@ jobs:
       - uses: pre-commit/action@646c83fcd040023954eafda54b4db0192ce70507  # 3.0.0
         with:
           extra_args: --all-files --show-diff-on-failure --color always
+
+  tests:
+    runs-on: ubuntu-latest
+    needs: [pre-commit]
+    steps:
+      - name: "Checkout ${{ github.ref }} ( ${{ github.sha }} )"
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - run: pip install -r requirements.txt
+      - run: python -m pytest -v
